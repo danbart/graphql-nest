@@ -1,0 +1,14 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  """
+  Returns "Hello World!"
+  """
+  hello: String!
+  randomNumber: Float!
+
+  """Returns a random integer from 0 to the specified number, default 6"""
+  randomFromZeroTo(to: Int): Int!
+}
