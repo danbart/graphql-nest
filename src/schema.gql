@@ -2,6 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Todo {
+  id: Int!
+  description: String!
+  done: Boolean!
+}
+
+"""Todo quick aggregations"""
+type AggregationsType {
+  """Total number of todos"""
+  total: Float!
+
+  """Number of pending todos"""
+  pending: Float!
+
+  """Number of completed todos"""
+  completed: Float!
+
+  """Number of completed todos"""
+  totalTodosCompleted: Float! @deprecated(reason: "Use `completed` field instead")
+}
+
 type Query {
   """
   Returns "Hello World!"
@@ -11,4 +32,35 @@ type Query {
 
   """Returns a random integer from 0 to the specified number, default 6"""
   randomFromZeroTo(to: Int): Int!
+  todos(
+    """Indicates if the todo is done"""
+    status: Boolean
+  ): [Todo!]!
+  todo(id: Int!): Todo!
+  totalTodos: Int!
+  pendingTodos: Int!
+  completedTodos: Int!
+  agregations: AggregationsType!
+}
+
+type Mutation {
+  createTodo(createTodoInput: CreateTodoInput!): Todo!
+  updateTodo(updateTodoInput: UpdateTodoInput!): Todo!
+  deleteTodo(id: Int!): Boolean!
+}
+
+input CreateTodoInput {
+  """Description of the todo"""
+  description: String!
+}
+
+input UpdateTodoInput {
+  """Id of the todo to update"""
+  id: Float!
+
+  """Description of the todo"""
+  description: String
+
+  """Indicates if the todo is done"""
+  done: Boolean
 }
